@@ -1,4 +1,4 @@
-package com.example.alkemychallenge
+package com.example.tmdb
 
 import org.junit.Test
 
