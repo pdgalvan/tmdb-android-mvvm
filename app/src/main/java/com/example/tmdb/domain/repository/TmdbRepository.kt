@@ -1,9 +1,9 @@
 package com.example.tmdb.domain.repository
 
-import com.example.tmdb.data.remote.model.MovieResponse
-import retrofit2.Response
+import com.example.tmdb.data.remote.model.GetMovieByIdResponse
+import javax.inject.Inject
 
-interface TmdbRepository {
+interface TmdbRepository{
 
-    suspend fun getMovieList(): Response<MovieResponse>
+    suspend fun getMovieList(): List<GetMovieByIdResponse>?
 }
