@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.viewbinding.library.fragment.viewBinding
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tmdb.R
 import com.example.tmdb.databinding.FragmentMovieListBinding
@@ -34,7 +35,7 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
 
     private fun initRecyclerView() {
         binding.rvMovies.adapter = adapter
-        binding.rvMovies.layoutManager = LinearLayoutManager(this.context)
+        binding.rvMovies.layoutManager = GridLayoutManager(this.context,3)
     }
 
 }
