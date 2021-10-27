@@ -1,10 +1,11 @@
 package com.example.tmdb.di
 
-import com.example.tmdb.data.remote.TmdbApi
+import com.example.tmdb.data.remote.TmdbService
 import com.example.tmdb.data.repository.TmdbRepositoryImpl
 import com.example.tmdb.domain.repository.TmdbRepository
 import com.example.tmdb.util.Constants.BASE_URL
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,7 +21,9 @@ object AppModule {
     @Provides
     @Singleton
     fun provideMoshi() : Moshi =
-        Moshi.Builder().build()
+        Moshi.Builder()
+            .addLast(KotlinJsonAdapterFactory())
+            .build()
 
     @Provides
     @Singleton
@@ -29,17 +32,17 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideTmdbApi(moshiConverterFactory: MoshiConverterFactory) : TmdbApi{
+    fun provideTmdbService(moshiConverterFactory: MoshiConverterFactory) : TmdbService{
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(moshiConverterFactory)
             .build()
-            .create(TmdbApi::class.java)
+            .create(TmdbService::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideTmdbRepository(api: TmdbApi): TmdbRepository{
-        return TmdbRepositoryImpl(api)
+    fun provideTmdbRepository(service: TmdbService): TmdbRepository{
+        return TmdbRepositoryImpl(service)
     }
 }

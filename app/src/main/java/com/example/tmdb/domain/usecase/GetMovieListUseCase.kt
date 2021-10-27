@@ -6,5 +6,5 @@ import javax.inject.Inject
 class GetMovieListUseCase @Inject constructor(
     private val repository: TmdbRepository
 ){
-    suspend operator fun invoke() = repository.getMovieList()
+    suspend operator fun invoke(pageNumber: Int) = repository.getMovieList(pageNumber)
 }

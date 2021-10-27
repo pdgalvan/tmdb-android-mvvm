@@ -1,13 +1,10 @@
 package com.example.tmdb.presentation.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.tmdb.data.remote.model.GetMovieByIdResponse
+import androidx.lifecycle.*
+import androidx.paging.*
 import com.example.tmdb.domain.usecase.GetMovieListUseCase
+import com.example.tmdb.presentation.view.MoviePagingSource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -15,14 +12,11 @@ class MovieListViewModel @Inject constructor(
     private val getMovieListUseCase: GetMovieListUseCase
 ) : ViewModel() {
 
-    private val _movieList = MutableLiveData<List<GetMovieByIdResponse>?>()
-    val movieList: LiveData<List<GetMovieByIdResponse>?> get() = _movieList
+    val listData = Pager(
+        PagingConfig(pageSize = 20),
+    ){
+        MoviePagingSource(getMovieListUseCase)
+    }.flow.cachedIn(viewModelScope)
 
-    fun getMovieList() {
-        viewModelScope.launch {
-            val response = getMovieListUseCase.invoke()
-            _movieList.postValue(response)
-        }
-    }
 
 }

@@ -5,5 +5,7 @@ import javax.inject.Inject
 
 interface TmdbRepository{
 
-    suspend fun getMovieList(): List<GetMovieByIdResponse>?
+    suspend fun getMovieList(pageNumber: Int): List<GetMovieByIdResponse>?
+
+    suspend fun getMovieById(movieId: Int): GetMovieByIdResponse?
 }

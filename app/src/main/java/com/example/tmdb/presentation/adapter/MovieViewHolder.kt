@@ -12,7 +12,6 @@ class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view){
     private val binding = ItemMovieBinding.bind(view)
     fun bind(getMovieByIdResponse: GetMovieByIdResponse){
         binding.tvTitle.text = getMovieByIdResponse.title
-        //"poster_path": "/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg",
         Glide.with(itemView)
             .load(IMAGE_URL+getMovieByIdResponse.posterPath)
             .into(binding.ivMovie)

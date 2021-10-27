@@ -73,6 +73,10 @@ dependencies {
     //RecyclerView
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
+    //Paging
+    implementation 'androidx.paging:paging-runtime-ktx:3.0.1'
+
+
     //Navigation Component
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
@@ -84,6 +88,7 @@ dependencies {
     //Moshi
     implementation 'com.squareup.moshi:moshi:1.12.0'
     kapt 'com.squareup.moshi:moshi-kotlin-codegen:1.12.0'
+    implementation 'com.squareup.moshi:moshi-kotlin:1.12.0'
 
     //Retrofit + Moshi
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -93,12 +98,13 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.3.0'
     kapt 'androidx.room:room-compiler:2.3.0'
     implementation 'androidx.room:room-ktx:2.3.0'
-    implementation 'androidx.room:room-paging:2.4.0-beta01'
+   // implementation 'androidx.room:room-paging:2.4.0-beta01'
 
     //Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
 
     //ViewModel + Coroutines
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-rc01'
 
 }
