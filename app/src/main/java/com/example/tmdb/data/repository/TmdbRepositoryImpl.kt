@@ -19,7 +19,11 @@ class TmdbRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getMovieById(movieId: Int): GetMovieByIdResponse? {
-        TODO("Not yet implemented")
+        val request = service.getMovieDetail(movieId)
+        if(request.isSuccessful){
+            return  request.body()
+        }
+        return null
     }
 
 }

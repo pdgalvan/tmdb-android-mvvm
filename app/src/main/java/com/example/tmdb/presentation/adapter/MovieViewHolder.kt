@@ -13,7 +13,7 @@ class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view){
     fun bind(getMovieByIdResponse: GetMovieByIdResponse){
         binding.tvTitle.text = getMovieByIdResponse.title
         Glide.with(itemView)
-            .load(IMAGE_URL+getMovieByIdResponse.posterPath)
+            .load(IMAGE_URL.plus(getMovieByIdResponse.posterPath))
             .into(binding.ivMovie)
     }
 }

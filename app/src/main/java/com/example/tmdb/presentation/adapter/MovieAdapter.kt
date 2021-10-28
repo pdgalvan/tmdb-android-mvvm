@@ -1,18 +1,15 @@
 package com.example.tmdb.presentation.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.DifferCallback
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
 import com.example.tmdb.R
 import com.example.tmdb.data.remote.model.GetMovieByIdResponse
-import javax.inject.Inject
 
-class MovieAdapter @Inject constructor() :
+class MovieAdapter(private val itemOnClickListener: ItemOnClickListener) :
     PagingDataAdapter<GetMovieByIdResponse, MovieViewHolder>(MovieComparator){
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -20,6 +17,9 @@ class MovieAdapter @Inject constructor() :
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+        holder.itemView.setOnClickListener {
+            itemOnClickListener.onItemClick(getItem(position)?.id ?: 0)
+        }
         getItem(position)?.let { holder.bind(it) }
     }
 
@@ -30,6 +30,10 @@ class MovieAdapter @Inject constructor() :
 
         override fun areContentsTheSame(oldItem: GetMovieByIdResponse, newItem: GetMovieByIdResponse) =
             oldItem == newItem
+    }
+
+    interface ItemOnClickListener{
+        fun onItemClick(movieId: Int)
     }
 
 }

@@ -11,7 +11,7 @@ data class GetMovieByIdResponse(
     @Json(name = "backdrop_path")
     val backdropPath: String?,
     @Json(name = "genre_ids")
-    val genreIds: List<Int>,
+    val genreIds: List<Int> = emptyList(),
     @Json(name = "id")
     val id: Int,
     @Json(name = "original_language")
@@ -23,9 +23,9 @@ data class GetMovieByIdResponse(
     @Json(name = "popularity")
     val popularity: Double,
     @Json(name = "poster_path")
-    val posterPath: String,
+    val posterPath: String?,
     @Json(name = "release_date")
-    val releaseDate: String,
+    val releaseDate: String?,
     @Json(name = "title")
     val title: String,
     @Json(name = "video")
